@@ -1,0 +1,31 @@
+<!--# Paleo Recipe Finder-->
+<!--If the user gives a bad input while trying to register, this page will be displayed to them.-->
+{% extends "layout.html" %}
+
+{% block title %}
+    Sorry!
+{% endblock %}
+
+{% block main %}
+    <form action="/register" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+        </div>
+        <div class="form-group">
+            <input class="form-control col-sm-3" name="password" placeholder="Password" type="password">
+        </div>
+        <div class="form-group">
+            <input class="form-control" name="confirmation" placeholder="Confirmation" type="password">
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">Register</button>
+        </div>
+    </form>
+    <br>
+    <!--Display an alert under the login UI if the user does not fill in the form correctly.-->
+    <div class="alert alert-dismissible alert-warning fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <h4 class="alert-heading">Warning! {{ error_code }}</h4>
+        <p class="mb-0">{{ message }}</a>.</p>
+    </div>
+{% endblock %}

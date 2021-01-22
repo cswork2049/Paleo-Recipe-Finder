@@ -1,0 +1,41 @@
+<!--Paleo Recipe Finder-->
+<!--Displays the search results from a search query by a user.-->
+
+{% extends "layout.html" %}
+
+{% block title %}
+    Search Results
+{% endblock %}
+
+{% block main %}
+    <!--Parse out recipes into columns.-->
+    <div class="card-columns">
+        <!--For each recipe, we create a card with a title, image and link, and summary and then we set those cards side by side-->
+        {% for recipe in recipe_list %}
+            <!--Add height: 500px; to style if you want evenly sized cards (side effect is that the card grid will be wonky).-->
+            <div class="card mb-3" style="width: 300px; margin: auto;">
+                <!--The title of the recipe.-->
+                <div class="card-body">
+                    <h5 class="card-title">{{ recipe.get_title() }}</h5>
+                </div>
+                <!--The clickable image associated with the recipe.-->
+                <div>
+                    <a href="{{ recipe.get_link() }}" target="_blank">
+                        <img class="card border-secondary mb-3 box-shadow-hover pointer" src="{{ recipe.get_image() }}" alt="recipe image" style="width: 185px; margin: auto;">
+                    </a>
+                </div>
+                <!--The recipe summary.-->
+                <div class="card-body">
+                    <p class="card-text">{{ recipe.get_summary() }}</p>
+                </div>
+                <!--A button for saving a recipe that the user enjoys via /save to their user profile.-->
+                <!--<form action="/save">-->
+                <!--    <div>-->
+                <!--        <button class="btn btn-primary" type="submit">Favorite it!</button>-->
+                <!--    </div>-->
+                <!--</form>-->
+                <br>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
